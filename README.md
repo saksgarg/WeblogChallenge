@@ -1,6 +1,6 @@
 # WeblogChallenge
 
-The goal is to do web log analysis using a distributed tool.
+The goal is to do web log analysis using distributed tools.
 
 ## Tools Used:
 
@@ -24,7 +24,7 @@ The goal is to do web log analysis using a distributed tool.
 - A combination of request IP address + User Agent strings was used to determine unique visitors.
 - Sessionization was done by time window, with session idle time cut-off set to 15 minutes.
 - Most engaged users were identified by filtering sessions having length greater than the 95th percentile of session lengths.
-- Logs with non-standard values, null user agent values, as well as sessions with zero session length were ignored.
+- Sessions with zero session length were ignored.
 
 ## Results:
 
