@@ -1,65 +1,57 @@
 # WeblogChallenge
-This is an interview challenge for Paytm Labs. Please feel free to fork. Pull Requests will be ignored.
 
-The challenge is to make make analytical observations about the data using the distributed tools below.
+The goal is to do web log analysis using a distributed tool.
 
-## Processing & Analytical goals:
+## Tools Used:
 
-1. Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a fixed time window.
-    https://en.wikipedia.org/wiki/Session_(web_analytics)
+- Spark
+- Scala
+- SBT
+- IntelliJ IDEA Community Edition
+- Databricks
+- Github
 
-2. Determine the average session time
+## Setup Instructions:
 
-3. Determine unique URL visits per session. To clarify, count a hit to a unique URL only once per session.
+- Set up Spark, Scala and SBT on system.
+- Set up attached files, as per folder structure.
+- Set SPARK_HOME environment variable.
+- Move to project folder on terminal.
+- "bash run.sh" on command line.
 
-4. Find the most engaged users, ie the IPs with the longest session times
+## Assumptions
 
-## Additional questions for Machine Learning Engineer (MLE) candidates:
-1. Predict the expected load (requests/second) in the next minute
+- A combination of request IP address + User Agent strings was used to determine unique visitors.
+- Sessionization was done by time window, with session idle time cut-off set to 15 minutes.
+- Most engaged users were identified by filtering sessions having length greater than the 95th percentile of session lengths.
+- Logs with non-standard values, null user agent values, as well as sessions with zero session length were ignored.
 
-2. Predict the session length for a given IP
+## Results
 
-3. Predict the number of unique URL visits by a given IP
+- average session time: 682.25 seconds
+- average of unique url count by session: 7.67
 
-## Tools allowed (in no particular order):
-- Spark (any language, but prefer Scala or Java)
-- Pig
-- MapReduce (Hadoop 2.x only)
-- Flink
-- Cascading, Cascalog, or Scalding
+- Top 5 sessions by Unique URL Count:
 
-If you need Hadoop, we suggest 
-HDP Sandbox:
-http://hortonworks.com/hdp/downloads/
-or 
-CDH QuickStart VM:
-http://www.cloudera.com/content/cloudera/en/downloads.html
++--------------------------------------------------------------------------------------------------------------------------------------+----------------+
+|sessionId                                                                                                                             |unique_url_count|
++--------------------------------------------------------------------------------------------------------------------------------------+----------------+
+|119.81.61.166_Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10_6|9012            |
+|119.81.61.166_Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10_7|5790            |
+|52.74.219.71_Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)_5                                               |4938            |
+|106.186.23.95_-_8                                                                                                                     |4656            |
+|52.74.219.71_-_5                                                                                                                      |4594            |
++--------------------------------------------------------------------------------------------------------------------------------------+----------------+
 
+- Top 5 Most Engaged Users by longest session times: 
 
-### Additional notes:
-- You are allowed to use whatever libraries/parsers/solutions you can find provided you can explain the functions you are implementing in detail.
-- IP addresses do not guarantee distinct users, but this is the limitation of the data. As a bonus, consider what additional data would help make better analytical conclusions
-- For this dataset, complete the sessionization by time window rather than navigation. Feel free to determine the best session window time on your own, or start with 15 minutes.
-- The log file was taken from an AWS Elastic Load Balancer:
-http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html#access-log-entry-format
++---------------+----------------------------------------------------------------------------------------------------------------------+--------------------+
+|request_ip     |user_agent                                                                                                            |longest_session_time|
++---------------+----------------------------------------------------------------------------------------------------------------------+--------------------+
+|220.226.206.7  |-                                                                                                                     |4097                |
+|119.81.61.166  |Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10|3039                |
+|52.74.219.71   |Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)                                              |3036                |
+|54.251.151.39  |Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.8 (KHTML, like Gecko) Chrome/17.0.940.0 Safari/535.8              |3029                |
+|52.74.219.71   |-                                                                                                                     |3029                |
++---------------+----------------------------------------------------------------------------------------------------------------------+--------------------+
 
-
-
-## How to complete this challenge:
-
-A. Fork this repo in github
-    https://github.com/PaytmLabs/WeblogChallenge
-
-B. Complete the processing and analytics as defined first to the best of your ability with the time provided.
-
-C. Place notes in your code to help with clarity where appropriate. Make it readable enough to present to the Paytm Labs interview team.
-
-D. Complete your work in your own github repo and send the results to us and/or present them during your interview.
-
-## What are we looking for? What does this prove?
-
-We want to see how you handle:
-- New technologies and frameworks
-- Messy (ie real) data
-- Understanding data transformation
-This is not a pass or fail test, we want to hear about your challenges and your successes with this particular problem.
