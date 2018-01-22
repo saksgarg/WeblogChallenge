@@ -28,10 +28,10 @@ The goal is to do web log analysis using a distributed tool.
 
 ## Results:
 
-- average session time: 682.25 seconds
-- average of unique url count by session: 7.67
+- Average session time: 682.25 seconds
+- Average of unique url count by session: 7.67
 
-- Top 5 Total Unique URL Counts and corresponding Session Ids:
+- Top 5 Total Unique URL Counts and corresponding Session Ids (request_ip+user_agent+session_num):
     
     - 9012: 119.81.61.166_Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10_6
     - 5790: 119.81.61.166_Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10_7
